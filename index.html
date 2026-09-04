@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift4Joy — Online Gift Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     ICON SPRITE
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+  <g id="ic-gift"><path d="M20 12v10H4V12" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 7h20v5H2z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M12 22V7" stroke="currentColor" stroke-width="1.6"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/></g>
+  <g id="ic-search"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></g>
+  <g id="ic-heart"><path d="M12 20s-7.5-4.6-10-9.3C.4 7.4 2.1 4 5.6 4 8 4 10 5.3 12 8c2-2.7 4-4 6.4-4 3.5 0 5.2 3.4 3.6 6.7C19.5 15.4 12 20 12 20z" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"/></g>
+  <g id="ic-heart-fill"><path d="M12 20s-7.5-4.6-10-9.3C.4 7.4 2.1 4 5.6 4 8 4 10 5.3 12 8c2-2.7 4-4 6.4-4 3.5 0 5.2 3.4 3.6 6.7C19.5 15.4 12 20 12 20z" fill="currentColor"/></g>
+  <g id="ic-cart"><circle cx="9" cy="21" r="1.3" fill="currentColor"/><circle cx="18" cy="21" r="1.3" fill="currentColor"/><path d="M2 3h2.4l2.2 12.2a2 2 0 002 1.6h8.5a2 2 0 002-1.7L21 8H5.6" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="ic-home"><path d="M4 11.5L12 4l8 7.5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9.5h12V10" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"/><path d="M10 19.5v-6h4v6" stroke="currentColor" stroke-width="1.7" fill="none"/></g>
+  <g id="ic-grid"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/></g>
+  <g id="ic-user"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M4.5 20c1.4-4 4.2-6 7.5-6s6.1 2 7.5 6" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></g>
+  <g id="ic-bell"><path d="M6 10a6 6 0 0112 0c0 5 1.5 6 1.5 6h-15S6 15 6 10z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M9.5 19a2.5 2.5 0 005 0" stroke="currentColor" stroke-width="1.6" fill="none"/></g>
+  <g id="ic-back"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="ic-share"><circle cx="18" cy="5" r="2.6" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="6" cy="12" r="2.6" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="18" cy="19" r="2.6" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8.3 10.7l7.4-4.2M8.3 13.3l7.4 4.2" stroke="currentColor" stroke-width="1.6"/></g>
+  <g id="ic-star"><path d="M12 2.5l2.9 6 6.6.7-4.9 4.6 1.3 6.5L12 16.9 6.1 20.3l1.3-6.5L2.5 9.2l6.6-.7z" fill="currentColor"/></g>
+  <g id="ic-truck"><rect x="1.5" y="7" width="12" height="9" rx="1.2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M13.5 10h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><circle cx="6" cy="18.5" r="1.7" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="17" cy="18.5" r="1.7" stroke="currentColor" stroke-width="1.4" fill="none"/></g>
+  <g id="ic-box"><path d="M3 8l9-5 9 5-9 5-9-5z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M3 8v9l9 5 9-5V8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M12 13v9" stroke="currentColor" stroke-width="1.6"/></g>
+  <g id="ic-check"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="ic-check-circle"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8 12.3l2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="ic-clock"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>
+  <g id="ic-package"><path d="M3 7.5l9-4 9 4-9 4-9-4z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M3 7.5v9l9 4 9-4v-9" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></g>
+  <g id="ic-chev"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="ic-map"><path d="M9 3L3 5.5v15L9 18l6 2.5 6-2.5v-15L15 5.5 9 3z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M9 3v15M15 5.5v15" stroke="currentColor" stroke-width="1.5"/></g>
+  <g id="ic-card"><rect x="2" y="5" width="20" height="14" rx="2.4" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M2 9.5h20" stroke="currentColor" stroke-width="1.6"/></g>
+  <g id="ic-bank"><path d="M3 21h18M4 21V10M20 21V10M2 10l10-6 10 6M7 10v11M12 10v11M17 10v11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>
+  <g id="ic-wallet"><rect x="2" y="6" width="20" height="14" rx="2.4" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M16 13.2a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z" fill="currentColor"/><path d="M2 9h20" stroke="currentColor" stroke-width="1.6"/></g>
+  <g id="ic-info"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 8.2h.01M11.3 11h1.4v6h-1.4z" fill="currentColor"/></g>
+  <g id="ic-plus"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="ic-minus"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="ic-headset"><path d="M4 13v-1a8 8 0 0116 0v1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="2.5" y="13" width="4" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="17.5" y="13" width="4" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M19.5 19v.5a3 3 0 01-3 3H13" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>
+  <g id="ic-logout"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="ic-tag"><path d="M20.6 12.9L13.1 20.4a2 2 0 01-2.8 0l-6.7-6.7a2 2 0 010-2.8l7.5-7.5H18a2.6 2.6 0 012.6 2.6z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><circle cx="15" cy="8.6" r="1.4" fill="currentColor"/></g>
+  <g id="ic-mapmarker"><path d="M12 22s7-6.4 7-12.5A7 7 0 105 9.5C5 15.6 12 22 12 22z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6" fill="none"/></g>
+  <g id="ic-lock"><rect x="4.5" y="10.5" width="15" height="10" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8 10.5V7a4 4 0 018 0v3.5" stroke="currentColor" stroke-width="1.6" fill="none"/></g>
+</defs>
+</svg>
+
+<!-- ============================================================
+     SITE HEADER — persistent top navigation
+     ============================================================ -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand-lockup" onclick="goTo('home',{push:false})">
+      <div class="brand-mark"><svg style="color:#fff"><use href="#ic-gift"/></svg></div>
+      <div class="brand-text">
+        <h1>Gift4Joy</h1>
+        <p>Thoughtful gifts, delivered with joy</p>
+      </div>
+    </div>
+    <nav class="site-nav" id="siteNav"></nav>
+  </div>
+</header>
+
+<div class="stage">
+  <div class="device">
+      <div class="screens" id="screens">
+        <!-- ============ 1. LOGIN ============ -->
+        <section class="screen auth-screen" data-screen="login">
+          <div class="screen-scroll">
+            <div class="auth-hero">
+              <div class="ribbon-icon"><svg style="color:#fff"><use href="#ic-gift"/></svg></div>
+              <h1 class="h-display">Welcome back</h1>
+              <p>Thoughtful gifts, delivered with joy.</p>
+            </div>
+            <div class="field">
+              <label>Email address</label>
+              <input type="email" id="loginEmail" placeholder="you@example.com" value="lindiwe@example.com">
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" id="loginPassword" placeholder="••••••••" value="joyful2026">
+            </div>
+            <div class="field-hint"><a onclick="toast('Password reset link sent (demo)')">Forgot password?</a></div>
+            <button class="btn btn-primary" onclick="handleLogin()">Log in</button>
+            <div class="divider-row"><div class="line"></div><span>or continue with</span><div class="line"></div></div>
+            <div class="social-row">
+              <button class="social-btn" onclick="toast('Google sign-in (demo)')">Google</button>
+              <button class="social-btn" onclick="toast('Facebook sign-in (demo)')">Facebook</button>
+            </div>
+            <div class="auth-foot">New to Gift4Joy? <a onclick="goTo('register')">Create an account</a></div>
+          </div>
+        </section>
+
+        <!-- ============ 2. REGISTER ============ -->
+        <section class="screen auth-screen" data-screen="register">
+          <div class="screen-scroll">
+            <div class="auth-hero" style="padding-top:34px;">
+              <h1 class="h-display">Create your account</h1>
+              <p>Join Gift4Joy for reservations, orders &amp; real-time tracking.</p>
+            </div>
+            <div class="field">
+              <label>Full name</label>
+              <input type="text" id="regName" placeholder="Lindiwe Zulu">
+            </div>
+            <div class="field">
+              <label>Email address</label>
+              <input type="email" id="regEmail" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label>Phone number</label>
+              <input type="tel" id="regPhone" placeholder="071 234 5678">
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Password</label><input type="password" placeholder="••••••••"></div>
+              <div class="field"><label>Confirm</label><input type="password" placeholder="••••••••"></div>
+            </div>
+            <div class="checkline">
+              <input type="checkbox" id="regTerms" checked>
+              <label for="regTerms">I agree to the <a>Terms of Service</a> and <a>Privacy Policy</a></label>
+            </div>
+            <button class="btn btn-primary" onclick="handleRegister()">Create account</button>
+            <div class="auth-foot">Already have an account? <a onclick="goTo('login')">Log in</a></div>
+          </div>
+        </section>
+
+        <!-- ============ 3. HOME / DASHBOARD ============ -->
+        <section class="screen" data-screen="home">
+          <div class="screen-scroll">
+            <div class="home-topbar">
+              <div class="greet">
+                <div class="hi">Good afternoon</div>
+                <h2 id="homeGreetName">Hi, Lindiwe</h2>
+              </div>
+              <div class="topbar-icons">
+                <div class="icon-btn" onclick="toast('3 new notifications')" style="position:relative">
+                  <svg><use href="#ic-bell"/></svg>
+                </div>
+                <div class="icon-btn" onclick="goTo('wishlist')"><svg><use href="#ic-heart"/></svg></div>
+              </div>
+            </div>
+
+            <div class="search-bar" onclick="goTo('shop')">
+              <svg><use href="#ic-search"/></svg>
+              <span>Search for gifts, hampers, décor…</span>
+            </div>
+
+            <div class="hero-banner">
+              <div class="eyebrow">LIMITED EDIT</div>
+              <h3 class="h-display">Gifts she'll actually love — curated for the ones who matter</h3>
+              <button class="btn" onclick="goTo('shop')">Shop the edit</button>
+            </div>
+
+            <div class="section-head"><h4>Shop by occasion</h4><span class="see-all" onclick="goTo('shop')">See all</span></div>
+            <div class="chip-row" id="homeCategoryChips"></div>
+
+            <div class="section-head"><h4>Trending this week</h4><span class="see-all" onclick="goTo('shop')">See all</span></div>
+            <div class="hscroll" id="homeTrending"></div>
+
+            <div class="promo-row">
+              <div class="promo-card"><svg><use href="#ic-truck"/></svg><p>Same-day delivery across Durban on orders before 1pm</p></div>
+              <div class="promo-card"><svg><use href="#ic-gift"/></svg><p>Free premium gift-wrapping on every single order</p></div>
+            </div>
+
+            <div class="section-head"><h4>Shop by category</h4></div>
+            <div class="occasion-grid" id="homeOccasionGrid"></div>
+          </div>
+        </section>
+
+        <!-- ============ 4. SHOP / SEARCH ============ -->
+        <section class="screen" data-screen="shop">
+          <div class="shop-topbar">
+            <div class="shop-search">
+              <svg><use href="#ic-search"/></svg>
+              <input type="text" id="shopSearchInput" placeholder="Search products…" oninput="renderShop()">
+            </div>
+          </div>
+          <div class="chip-row" id="shopCategoryChips" style="padding-top:0;"></div>
+          <div class="shop-filterbar">
+            <span class="count" id="shopCount">12 gifts</span>
+            <button class="sortbtn" onclick="toast('Sort: Popularity, Price, New in (demo)')">Sort &amp; filter <svg><use href="#ic-chev" style="transform:rotate(90deg)"/></svg></button>
+          </div>
+          <div class="screen-scroll">
+            <div class="grid2" id="shopGrid"></div>
+          </div>
+        </section>
+
+        <!-- ============ 5. PRODUCT VIEW ============ -->
+        <section class="screen" data-screen="product">
+          <div class="appbar" style="padding-bottom:0;">
+            <div class="icon-btn" onclick="goBack()"><svg><use href="#ic-back"/></svg></div>
+            <div style="flex:1"></div>
+            <div class="trail">
+              <div class="icon-btn" id="pvHeartBtn" onclick="toggleWishlistCurrent()"><svg><use href="#ic-heart"/></svg></div>
+              <div class="icon-btn" onclick="toast('Share link copied (demo)')"><svg><use href="#ic-share"/></svg></div>
+            </div>
+          </div>
+          <div class="screen-scroll" id="productScroll">
+            <!-- filled by JS -->
+          </div>
+          <div class="pv-sticky">
+            <button class="btn btn-outline" onclick="toggleWishlistCurrent()"><svg><use href="#ic-heart"/></svg></button>
+            <button class="btn btn-primary" onclick="addCurrentToCart()">Add to cart — <span id="pvCtaPrice"></span></button>
+          </div>
+        </section>
+
+        <!-- ============ 6. WISHLIST ============ -->
+        <section class="screen" data-screen="wishlist">
+          <div class="appbar"><h2>Wishlist</h2><div class="trail"><div class="icon-btn" onclick="goTo('shop')"><svg><use href="#ic-search"/></svg></div></div></div>
+          <div class="screen-scroll">
+            <div class="wl-list" id="wishlistList"></div>
+            <div class="section-head" id="wlRecHead" style="display:none;"><h4>Recommended for you</h4></div>
+            <div class="hscroll" id="wlRecommend"></div>
+          </div>
+        </section>
+
+        <!-- ============ 7. SHOPPING CART ============ -->
+        <section class="screen" data-screen="cart">
+          <div class="appbar"><h2>My cart</h2><div class="trail" id="cartCountTrail"></div></div>
+          <div class="screen-scroll">
+            <div class="cart-list" id="cartList"></div>
+            <div class="promo-field">
+              <input type="text" placeholder="Enter promo code" id="promoInput">
+              <button class="btn btn-outline btn-small" onclick="applyPromo()">Apply</button>
+            </div>
+            <div class="summary-card" id="cartSummary"></div>
+          </div>
+          <div class="sticky-cta">
+            <button class="btn btn-primary" onclick="goTo('checkout')" id="checkoutBtn">Proceed to checkout</button>
+          </div>
+        </section>
+
+        <!-- ============ 8. CHECKOUT / ADDRESS / BILLING ============ -->
+        <section class="screen" data-screen="checkout">
+          <div class="appbar"><div class="icon-btn" onclick="goBack()"><svg><use href="#ic-back"/></svg></div><h2>Checkout</h2></div>
+          <div class="screen-scroll">
+            <div class="co-section">
+              <h4>Delivery address</h4>
+              <div class="saved-toggle">
+                <span>Use saved home address</span>
+                <div class="switch on" id="savedAddrSwitch" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="field"><label>Full name</label><input type="text" value="Lindiwe Zulu"></div>
+              <div class="field"><label>Street address</label><input type="text" value="14 Ridgeview Close, Umhlanga"></div>
+              <div class="field-row">
+                <div class="field"><label>City</label><input type="text" value="Durban"></div>
+                <div class="field"><label>Postal code</label><input type="text" value="4319" style="width:90px"></div>
+              </div>
+            </div>
+
+            <div class="co-section">
+              <h4>Delivery slot</h4>
+              <div class="slot-grid" id="slotGrid"></div>
+            </div>
+
+            <div class="co-section">
+              <h4>Order summary</h4>
+              <div class="order-mini" onclick="goTo('cart')">
+                <div class="stack" id="checkoutStack"></div>
+                <div class="txt" id="checkoutSummaryTxt">3 items · R0</div>
+                <div class="chev"><svg><use href="#ic-chev"/></svg></div>
+              </div>
+            </div>
+
+            <div class="co-section">
+              <h4>Payment method</h4>
+              <div class="pay-option is-active" data-pay="card" onclick="selectPay(this)">
+                <svg><use href="#ic-card"/></svg>
+                <div class="ptxt"><b>Credit / debit card</b><small>Visa, Mastercard — secured via PayFast</small></div>
+                <div class="radio"></div>
+              </div>
+              <div class="pay-option" data-pay="eft" onclick="selectPay(this)">
+                <svg><use href="#ic-bank"/></svg>
+                <div class="ptxt"><b>Instant EFT</b><small>Pay directly from your bank</small></div>
+                <div class="radio"></div>
+              </div>
+              <div class="pay-option" data-pay="wallet" onclick="selectPay(this)">
+                <svg><use href="#ic-wallet"/></svg>
+                <div class="ptxt"><b>Gift4Joy Wallet</b><small>Balance: R0.00</small></div>
+                <div class="radio"></div>
+              </div>
+            </div>
+          </div>
+          <div class="sticky-cta">
+            <button class="btn btn-primary" onclick="placeOrder()">Place order — <span id="checkoutTotal"></span></button>
+          </div>
+        </section>
+
+        <!-- ============ 9. PROFILE / SETTINGS ============ -->
+        <section class="screen" data-screen="profile">
+          <div class="screen-scroll">
+            <div class="profile-head">
+              <div class="avatar">LZ</div>
+              <h3>Lindiwe Zulu</h3>
+              <p>lindiwe@example.com</p>
+              <button class="btn btn-outline btn-small" onclick="toast('Edit profile (demo)')">Edit profile</button>
+            </div>
+            <div class="menu-list">
+              <div class="menu-item" onclick="goTo('tracking')">
+                <div class="ico"><svg><use href="#ic-package"/></svg></div>
+                <span>My orders</span>
+                <div class="chev"><svg><use href="#ic-chev"/></svg></div>
+              </div>
+              <div class="menu-item" onclick="goTo('wishlist')">
+                <div class="ico"><svg><use href="#ic-heart"/></svg></div>
+                <span>Wishlist</span>
+                <div class="chev"><svg><use href="#ic-chev"/></svg></div>
+              </div>
+              <div class="menu-item" onclick="toast('Saved addresses (demo)')">
+                <div class="ico"><svg><use href="#ic-mapmarker"/></svg></div>
+                <span>Saved addresses</span>
+                <div class="chev"><svg><use href="#ic-chev"/></svg></div>
+              </div>
+              <div class="menu-item" onclick="toast('Payment methods (demo)')">
+                <div class="ico"><svg><use href="#ic-card"/></svg></div>
+                <span>Payment methods</span>
+                <div class="chev"><svg><use href="#ic-chev"/></svg></div>
+              </div>
+              <div class="menu-item" onclick="toast('Notification settings (demo)')">
+                <div class="ico"><svg><use href="#ic-bell"/></svg></div>
+                <span>Notifications</span>
+                <div class="chev"><svg><use href="#ic-chev"/></svg></div>
+              </div>
+              <div class="menu-item" onclick="toast('Opening support chat (demo)')">
+                <div class="ico"><svg><use href="#ic-headset"/></svg></div>
+                <span>Help &amp; support</span>
+                <div class="chev"><svg><use href="#ic-chev"/></svg></div>
+              </div>
+              <div class="menu-item danger" onclick="handleLogout()">
+                <div class="ico"><svg><use href="#ic-logout"/></svg></div>
+                <span>Log out</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 10. ORDER TRACKING ============ -->
+        <section class="screen" data-screen="tracking">
+          <div class="appbar"><div class="icon-btn" onclick="goBack()"><svg><use href="#ic-back"/></svg></div><h2>Order tracking</h2></div>
+          <div class="screen-scroll">
+            <div class="track-id">
+              <span class="eyebrow" id="trackOrderNo">ORDER #G4J-10432</span>
+              <h3>Arriving today, estimated 4:30 PM</h3>
+            </div>
+            <div class="track-map">
+              <svg class="route" viewBox="0 0 340 150"><path d="M20 120 C 90 40, 180 160, 320 40" stroke="#24523F" stroke-width="2" stroke-dasharray="2 8" fill="none" stroke-linecap="round" opacity=".5"/></svg>
+              <div class="van" id="vanDot" style="left:30px; top:100px;"><svg><use href="#ic-truck"/></svg></div>
+              <div class="track-eta">🚚 On the way — 12 km left</div>
+            </div>
+            <div class="timeline" id="trackTimeline"></div>
+            <div class="track-items">
+              <h5>Items in this order</h5>
+              <div id="trackItemsList"></div>
+            </div>
+          </div>
+          <div class="sticky-cta">
+            <button class="btn btn-outline" onclick="toast('Connecting to support (demo)')">Contact support</button>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Toast + confirmation overlay live inside device -->
+      <div class="toast" id="toast"></div>
+      <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-card">
+          <div class="check"><svg><use href="#ic-check"/></svg></div>
+          <h3 class="h-display">Order placed!</h3>
+          <p>Your gifts are on their way to being wrapped with love. We'll notify you at every step.</p>
+          <button class="btn btn-primary" onclick="closeConfirmAndTrack()">Track my order</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+  <p class="foot-credit"><b>Gift4Joy</b> · Thoughtful gifts, delivered across Durban with same-day delivery and free gift-wrapping on every order.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
